@@ -31,4 +31,12 @@ public class Projectile : MonoBehaviour
 			Debug.Log ("Bullet Despawned");
 		}
 	}
+
+	void OnCollisionEnter2D(Collision2D col)
+	{
+		if (col.gameObject.tag == "enemy") 
+		{
+			Destroy(col.gameObject);
+		}
+	}
 }
