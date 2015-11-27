@@ -6,44 +6,47 @@ public class InvaderMovement: MonoBehaviour {
 	public float speed = 30f; //block movement
 	public float downspeed = 40f; //downwards block translation
 	private int direction = 0; //used as a switch for direction
-	private int right = 0;//used to control distance moved to the right
-	private int left = 0; //used to control distance moved to the left
-
+	public Vector2 mincamera;
+	public Vector2 maxcamera;
 	// Use this for initialization
 	void Start () {
+
 		StartCoroutine (ConstantMove ()); //creates coroutine for delay between enemy movement
 	}
 
 	
 	void MoveLeft() //controls left movement. Moves 5 spaces before resetting the right movement counter and swapping the direction switch to 2
 	{
-		if (left < 6) 
+
+		Vector2 mincamera = Camera.main.ViewportToWorldPoint (new Vector2 (0, 0));
+		Vector2 maxcamera = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
+		transform.position += Vector3.left * speed * Time.deltaTime;
+		if (transform.position.x > mincamera.x) 
 		{
 			transform.position += Vector3.left * speed * Time.deltaTime;
-			left++;
+
 		}
 
-		if (left == 6)
-		{
-
-			right = 0;
+		if ((transform.position.x - 5) <= mincamera.x)
+			{
 			direction = 2;
-
-		}
+			}
 	}
 	
 	void MoveRight () //controls right movement. Moves 5 spaces before resetting the left movement counter and swapping the direction switch to 3
 	{
-		if (right < 6) 
+		Vector2 mincamera = Camera.main.ViewportToWorldPoint (new Vector2 (0, 0));
+		Vector2 maxcamera = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
+		transform.position += Vector3.right * speed * Time.deltaTime;
+		if (transform.position.x < maxcamera.x) 
 		{
 			transform.position += Vector3.right * speed * Time.deltaTime;
-			right++;
+
 		}
 
-		if (right == 6) 
+		if ((transform.position.x + 5) >= maxcamera.x) 
 		{
 
-			left = 0;
 			direction = 3;
 
 		}
@@ -91,6 +94,12 @@ public class InvaderMovement: MonoBehaviour {
 	void Update () 
 	{
 		ConstantMove();
+		Vector2 mincamera = Camera.main.ViewportToWorldPoint (new Vector2 (0, 0));
+		Vector2 maxcamera = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
+		if (transform.position.y <= mincamera.y)
+		{
+			Destroy (gameObject);
+		}
 	}
 
 
