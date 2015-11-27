@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		speed = 8f;
+		speed = 2f;
 	}
 	
 	// Update is called once per frame
@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
 
 		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
 
-		if (transform.position.y < max.y)
+		if (transform.position.y > max.y)
 		{
 			Destroy (gameObject);
 		}

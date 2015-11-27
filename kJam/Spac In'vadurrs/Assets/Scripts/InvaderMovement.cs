@@ -4,8 +4,7 @@ using System.Collections;
 public class InvaderMovement: MonoBehaviour {
 
 	public float speed = 30f; //block movement
-	public float downspeed = 40
-		f; //downwards block translation
+	public float downspeed = 40f; //downwards block translation
 	private int direction = 0; //used as a switch for direction
 	private int right = 0;//used to control distance moved to the right
 	private int left = 0; //used to control distance moved to the left
