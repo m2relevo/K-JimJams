@@ -11,7 +11,19 @@ public class Projectile : MonoBehaviour
 	{	
 		speed = 2f;
 	}
-	
+
+
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		Debug.Log("HIT");
+		if (col.gameObject.tag == "enemy") 
+		{
+			Destroy(col.gameObject);
+			Destroy(this.gameObject);
+		}
+	}
+
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -32,11 +44,5 @@ public class Projectile : MonoBehaviour
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D col)
-	{
-		if (col.gameObject.tag == "enemy") 
-		{
-			Destroy(col.gameObject);
-		}
-	}
+
 }
