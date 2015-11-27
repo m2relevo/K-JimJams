@@ -5,9 +5,10 @@ public class InvaderMovement: MonoBehaviour {
 
 	public float speed = 30f; //block movement
 	public float downspeed = 40f; //downwards block translation
-	private int direction = 0; //used as a switch for direction
+	public int direction = 0; //used as a switch for direction
 	public Vector2 mincamera;
 	public Vector2 maxcamera;
+
 	// Use this for initialization
 	void Start () {
 
@@ -27,10 +28,6 @@ public class InvaderMovement: MonoBehaviour {
 
 		}
 
-		if ((transform.position.x - 5) <= mincamera.x)
-			{
-			direction = 2;
-			}
 	}
 	
 	void MoveRight () //controls right movement. Moves 5 spaces before resetting the left movement counter and swapping the direction switch to 3
@@ -44,12 +41,6 @@ public class InvaderMovement: MonoBehaviour {
 
 		}
 
-		if ((transform.position.x + 5) >= maxcamera.x) 
-		{
-
-			direction = 3;
-
-		}
 	}
 
 	void MoveDown () //code to move all blocks down a row
