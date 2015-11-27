@@ -4,15 +4,18 @@ using System.Collections;
 public class Projectile : MonoBehaviour
 {
 	float speed;
+
+
 	// Use this for initialization
 	void Start ()
-	{
+	{	
 		speed = 2f;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+	
 		Vector2 position = transform.position;
 
 		position = new Vector2(position.x,position.y+speed*Time.deltaTime);
@@ -20,9 +23,12 @@ public class Projectile : MonoBehaviour
 
 		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
 
+		Debug.Log ("Shots fired!");
+
 		if (transform.position.y > max.y)
 		{
 			Destroy (gameObject);
+			Debug.Log ("Bullet Despawned");
 		}
 	}
 }

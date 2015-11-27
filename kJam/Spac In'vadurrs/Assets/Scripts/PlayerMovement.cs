@@ -4,14 +4,19 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
 	public float speed;
+	public GameObject Bullet;
+	public GameObject Projectileposition;
+	public bool limit = false;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 	
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
-	{
+	{	
+
 		float x = Input.GetAxisRaw ("Horizontal");
 		float y = Input.GetAxisRaw ("Vertical");
 		Vector2 direction = new Vector2 (x, y).normalized;
@@ -19,8 +24,16 @@ public class PlayerMovement : MonoBehaviour
 		Move (direction);
 	}
 
-	void Move(Vector2 direction)
+	void Move (Vector2 direction)
+	{
+		if (Input.GetKeyDown ("space")) //&& limit == false
 		{
+			GameObject Projectile = (GameObject)Instantiate (Bullet);
+			Projectile.transform.position = Projectileposition.transform.position;
+			/*limit = true;*/
+		}
+
+
 		Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (0, 0));
 		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
 
@@ -34,5 +47,5 @@ public class PlayerMovement : MonoBehaviour
 		pos.x = Mathf.Clamp (pos.x, min.x, max.x);
 
 		transform.position = pos;
-		}
+	}
 }
