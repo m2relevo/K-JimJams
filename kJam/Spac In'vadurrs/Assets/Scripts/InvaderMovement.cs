@@ -8,15 +8,16 @@ public class InvaderMovement: MonoBehaviour {
 	public int direction = 0; //used as a switch for direction
 	public Vector2 mincamera;
 	public Vector2 maxcamera;
+	public float timespeed; //float for the calculation of the delay between steps the invaders take
 
 	// Use this for initialization
 	void Start () {
-
+		timespeed = 1;
 		StartCoroutine (ConstantMove ()); //creates coroutine for delay between enemy movement
 	}
 
 	
-	void MoveLeft() //controls left movement. Moves 5 spaces before resetting the right movement counter and swapping the direction switch to 2
+	void MoveLeft() //controls left movement. Moves constantly to the left until it detects the edge of the screen, then moves down and reverses movement
 	{
 
 		Vector2 mincamera = Camera.main.ViewportToWorldPoint (new Vector2 (0, 0));
@@ -30,7 +31,8 @@ public class InvaderMovement: MonoBehaviour {
 
 	}
 	
-	void MoveRight () //controls right movement. Moves 5 spaces before resetting the left movement counter and swapping the direction switch to 3
+	void MoveRight () //controls right movement. Moves constantly to the right until it detects the edge of the screen, then moves down and reverses movement
+	
 	{
 		Vector2 mincamera = Camera.main.ViewportToWorldPoint (new Vector2 (0, 0));
 		Vector2 maxcamera = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
@@ -55,26 +57,26 @@ public class InvaderMovement: MonoBehaviour {
 			while (direction == 0) //direction switch for right movement
 			{
 				MoveRight ();
-				yield return new WaitForSeconds (1);
+				yield return new WaitForSeconds (timespeed);
 			}
 
 			while (direction == 1) //direction switch for left movement
 			{
 				MoveLeft ();
-				yield return new WaitForSeconds (1);
+				yield return new WaitForSeconds (timespeed);
 			}
 
 			while (direction == 2) //direction switch for a downward movement, then swaps the blocks to move right
 			{
 				MoveDown ();
-				yield return new WaitForSeconds (1); 
+				yield return new WaitForSeconds (timespeed); 
 				direction = 0;
 
 			}
 			while (direction == 3)//direction switch for a downward movement, then swaps blocks to move left
 			{
 			MoveDown ();
-			yield return new WaitForSeconds (1);
+			yield return new WaitForSeconds (timespeed);
 				direction = 1;
 			}
 		}

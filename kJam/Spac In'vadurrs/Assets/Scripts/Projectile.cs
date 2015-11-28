@@ -21,6 +21,11 @@ public class Projectile : MonoBehaviour
 			Destroy(col.gameObject);
 			Destroy(this.gameObject);
 			PM.bulletDead();
+
+			GameObject deathSpeed = GameObject.Find ("MovementController");//code for editing the speed at which enemies move as one of them dies
+			InvaderMovement deathspeedscript = deathSpeed.GetComponent<InvaderMovement> ();
+			float deathspeedcontrol = deathspeedscript.timespeed - 0.10f;
+			deathspeedscript.timespeed = deathspeedcontrol;
 		}
 		else if(col.gameObject.tag == "home_base")
 		{
