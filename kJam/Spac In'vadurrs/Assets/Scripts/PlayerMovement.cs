@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 	public GameObject Bullet;
 	public GameObject Projectileposition;
 	public bool limit = false;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -28,9 +29,13 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (Input.GetKeyDown ("space")) //&& limit == false
 		{
+			if(limit==false)
+			{
+			limit=true;
 			GameObject Projectile = (GameObject)Instantiate (Bullet);
 			Projectile.GetComponent<Projectile>().SetPPT ();
 			Projectile.transform.position = Projectileposition.transform.position;
+			}
 			/*limit = true;*/
 		}
 
@@ -48,5 +53,10 @@ public class PlayerMovement : MonoBehaviour
 		pos.x = Mathf.Clamp (pos.x, min.x, max.x);
 
 		transform.position = pos;
+	}
+
+	public void bulletDead()
+	{
+		limit = false;
 	}
 }

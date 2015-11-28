@@ -13,13 +13,16 @@ public class EnemyCollision : MonoBehaviour {
 		Vector2 mincamera = Camera.main.ViewportToWorldPoint (new Vector2 (0, 0));
 		Vector2 maxcamera = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
 
-		GameObject newDir = GameObject.Find ("MovementController");
+		GameObject newDir = GameObject.Find ("MovementController");//code for editing the direction variable from the move controller during enemy collision 
 		InvaderMovement movementscript = newDir.GetComponent<InvaderMovement> ();
 		int directioncontrol = movementscript.direction;
 
+
+
+
 		if (directioncontrol == 0) 
 		{
-			if (transform.position.x >= maxcamera.x) {
+			if ((transform.position.x + 1) >= maxcamera.x) {
 
 				movementscript.direction = 3; 
 				directioncontrol = movementscript.direction;
@@ -28,7 +31,7 @@ public class EnemyCollision : MonoBehaviour {
 
 		if (directioncontrol == 1) 
 		{
-			if (transform.position.x <= mincamera.x)
+			if ((transform.position.x - 1) <= mincamera.x)
 			{
 				movementscript.direction = 2; 
 				directioncontrol = movementscript.direction;
