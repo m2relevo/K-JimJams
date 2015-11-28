@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
 
 			GameObject deathSpeed = GameObject.Find ("MovementController");//code for editing the speed at which enemies move as one of them dies
 			InvaderMovement deathspeedscript = deathSpeed.GetComponent<InvaderMovement> ();
-			float deathspeedcontrol = deathspeedscript.timespeed - 0.10f;
+			float deathspeedcontrol = deathspeedscript.timespeed - 0.10f; //THIS FLOAT needs to be a 1/X where X is the amount of enemies. 10 enemies = 1/10 = .10 so 10% increase per kill. 50 enemies = 1/50 = 0.2 = 2% speed increase per kill
 			deathspeedscript.timespeed = deathspeedcontrol;
 		}
 		else if(col.gameObject.tag == "home_base")
