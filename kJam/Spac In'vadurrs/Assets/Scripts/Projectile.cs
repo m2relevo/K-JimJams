@@ -4,6 +4,7 @@ using System.Collections;
 public class Projectile : MonoBehaviour
 {
 	float speed;
+	bool PP = true; // Player projectile too check if shot by enemy or player
 
 
 	// Use this for initialization
@@ -12,14 +13,35 @@ public class Projectile : MonoBehaviour
 		speed = 2f;
 	}
 
+	public void SetPPT()
+	{
+		PP = true;
+	}
+	public void SetPPF()
+	{
+		PP = false;
+	}
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		Debug.Log("HIT");
+
+
 		if (col.gameObject.tag == "enemy") 
 		{
-			Destroy(col.gameObject);
-			Destroy(this.gameObject);
+		   if(PP == true)
+			{
+			 Debug.Log("ENEMY HIT");
+			 Destroy(col.gameObject);
+			 Destroy(this.gameObject);
+			}
+		}
+		if (col.gameObject.tag == "Player") 
+		{
+			if(PP == false)
+			{
+				Debug.Log("PLAYER HIT");
+				//loose life or loose game
+			}
 		}
 	}
 
@@ -34,6 +56,7 @@ public class Projectile : MonoBehaviour
 		transform.position = position;
 
 		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
+		Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (-1, -1));
 
 		Debug.Log ("Shots fired!");
 
@@ -42,7 +65,14 @@ public class Projectile : MonoBehaviour
 			Destroy (gameObject);
 			Debug.Log ("Bullet Despawned");
 		}
+		//if (transform.position.y > min.y)
+		//{
+		//	Destroy (gameObject);
+		//	Debug.Log ("Bullet Despawned");
+		//}
 	}
+
+
 
 
 }

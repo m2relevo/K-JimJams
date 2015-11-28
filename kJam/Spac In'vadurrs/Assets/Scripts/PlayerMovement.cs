@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
 		if (Input.GetKeyDown ("space")) //&& limit == false
 		{
 			GameObject Projectile = (GameObject)Instantiate (Bullet);
+			Projectile.GetComponent<Projectile>().SetPPT ();
 			Projectile.transform.position = Projectileposition.transform.position;
 			/*limit = true;*/
 		}
