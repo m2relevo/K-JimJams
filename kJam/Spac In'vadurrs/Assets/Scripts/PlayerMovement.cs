@@ -27,15 +27,15 @@ public class PlayerMovement : MonoBehaviour
 
 	void Move (Vector2 direction)
 	{
-		if (Input.GetKeyDown ("space")) //&& limit == false
+		if (Input.GetKeyDown ("space") || Input.GetKeyDown ("joystick button 4")) //&& limit == false
 		{
 			if(limit==false)
-			{
-			limit=true;
-			GameObject Projectile = (GameObject)Instantiate (Bullet);
-			Projectile.GetComponent<Projectile>().SetPPT ();
-			Projectile.transform.position = Projectileposition.transform.position;
-			}
+			    {
+			        limit=true;
+			        GameObject Projectile = (GameObject)Instantiate (Bullet);
+			        Projectile.GetComponent<Projectile>().SetPPT ();
+			        Projectile.transform.position = Projectileposition.transform.position;
+			    }
 			/*limit = true;*/
 		}
 
