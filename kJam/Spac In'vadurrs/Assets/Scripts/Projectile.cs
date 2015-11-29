@@ -5,12 +5,15 @@ public class Projectile : MonoBehaviour
 {
 	float speed;
 	bool PP = true; // Player projectile too check if shot by enemy or player
-
+	public PlayerMovement PM;
+	public baseSprite BS;
 
 	// Use this for initialization
 	void Start ()
 	{	
 		speed = 2f;
+		PM = GameObject.Find ("Player").GetComponent<PlayerMovement> ();
+		//BS = GameObject.FindGameObjectWithTag("PixelEffect").GetComponent<baseSprite> ();
 	}
 
 	public void SetPPT()
@@ -33,7 +36,15 @@ public class Projectile : MonoBehaviour
 			 Debug.Log("ENEMY HIT");
 			 Destroy(col.gameObject);
 			 Destroy(this.gameObject);
+			 PM.bulletDead ();
 			}
+		}
+		if (col.gameObject.tag == "home_base") {
+			Debug.Log ("HIT BASE");
+			//FOR GEORGE: CALL PIXELEFFECT DO NOT CHILD CALL
+			Destroy (col.gameObject);
+			Destroy (this.gameObject);
+			PM.bulletDead ();		
 		}
 		if (col.gameObject.tag == "Player") 
 		{
@@ -64,6 +75,7 @@ public class Projectile : MonoBehaviour
 		{
 			Destroy (gameObject);
 			Debug.Log ("Bullet Despawned");
+			PM.bulletDead ();
 		}
 		//if (transform.position.y > min.y)
 		//{
