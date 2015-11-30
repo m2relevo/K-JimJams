@@ -7,19 +7,23 @@ public class Projectile : MonoBehaviour
 	bool PP = true; // Player projectile too check if shot by enemy or player
 	public PlayerMovement PM;
 	public baseSprite BS;
+	public ProjectileManager Man;
+	int ProVal;
 
 	// Use this for initialization
 	void Start ()
 	{	
 		speed = 2f;
 		PM = GameObject.Find ("Player").GetComponent<PlayerMovement> ();
+		Man = GameObject.Find("Manager").GetComponent<ProjectileManager>();
 		//BS = GameObject.FindGameObjectWithTag("PixelEffect").GetComponent<baseSprite> ();
 	}
-
+	// Is a player projectile
 	public void SetPPT()
 	{
 		PP = true;
 	}
+	//isnt a player projectile
 	public void SetPPF()
 	{
 		PP = false;
@@ -33,18 +37,23 @@ public class Projectile : MonoBehaviour
 		{
 		   if(PP == true)
 			{
+			 PM.bulletDead ();
 			 Debug.Log("ENEMY HIT");
 			 Destroy(col.gameObject);
 			 Destroy(this.gameObject);
-			 PM.bulletDead ();
 			}
 		}
-		if (col.gameObject.tag == "home_base") {
+		if (col.gameObject.tag == "home_base") 
+		{
+			if(PM!=null)
+				PM.bulletDead ();
+			//if(ProMan)
+				//ProMan.setDead();
 			Debug.Log ("HIT BASE");
 			//FOR GEORGE: CALL PIXELEFFECT DO NOT CHILD CALL
 			Destroy (col.gameObject);
 			Destroy (this.gameObject);
-			PM.bulletDead ();		
+		
 		}
 		if (col.gameObject.tag == "Player") 
 		{
@@ -69,13 +78,17 @@ public class Projectile : MonoBehaviour
 		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
 		Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (-1, -1));
 
-		Debug.Log ("Shots fired!");
+		//Debug.Log ("Shots fired!");
 
 		if (transform.position.y > max.y)
 		{
+			//if(PM != null)
+				PM.bulletDead ();
+			//if(ProMan!=null)
+			Man.setDead(this.gameObject);
 			Destroy (gameObject);
 			Debug.Log ("Bullet Despawned");
-			PM.bulletDead ();
+		
 		}
 		//if (transform.position.y > min.y)
 		//{

@@ -49,14 +49,16 @@ public class ProjectileManager : MonoBehaviour {
 		if (noFire == true) 
 		{
 			//add later 
+			Debug.Log("Still shooting");
 		}
 		//able to spawn a missile
 		if (noFire == false) 
 		{
+			Debug.Log("Making new bullet");
 			//pick enemy to shoot from
 			int R = (Random.Range(0, (enemies.Length - 1)));
 			int resupply = projCheck ();
-			if(resupply > 3)
+			if(resupply < maxNumProjectiles)
 			{
 			 newMissile(resupply);  
 			 Projectiles[resupply].shot.transform.position = enemies[R].transform.position;
@@ -73,21 +75,36 @@ public class ProjectileManager : MonoBehaviour {
 		   //shoot projectile from enemy
 		}
 	}
-
+	// Check which projectile is dead
 	int projCheck()
 	{
-		for(int i = 0; i < 3; i++)
+		Debug.Log ("whos Dead");
+		for(int i = 0; i < maxNumProjectiles; i++)
 		{
 			if(Projectiles[i].alive == false)
 				return i;
 		}
-		return 4;
+		return maxNumProjectiles+1;
 	}
+	//instantiates new missile
 	void newMissile(int supply)
 	{
+		Debug.Log ("Its a baby bullet");
 		GameObject proj = (GameObject)Instantiate (missile);
 		Projectiles[supply].shot = proj;
 		Projectiles[supply].shot.GetComponent<Projectile>().SetPPF();
 		Projectiles[supply].alive = true;
+	}
+	//sets projectile as dead
+	public void setDead(GameObject obj)
+	{
+		for (int w = 0; w < maxNumProjectiles; w++) 
+		{
+			if(Projectiles[w].shot == obj)
+			{
+			 Debug.Log ("Ure Dead m9");
+			 Projectiles [w].alive = false;
+			}
+		}
 	}
 }
