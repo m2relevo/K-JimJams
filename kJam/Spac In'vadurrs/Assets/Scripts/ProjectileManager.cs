@@ -29,6 +29,7 @@ public class ProjectileManager : MonoBehaviour {
 			Projectiles[i].shot = proj;
 			Projectiles[i].shot.GetComponent<Projectile>().SetPPF();
 			Projectiles[i].alive = true;
+
 		}
 	}
 	

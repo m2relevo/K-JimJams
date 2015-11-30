@@ -47,8 +47,7 @@ public class Projectile : MonoBehaviour
 		{
 			if(PM!=null)
 				PM.bulletDead ();
-			//if(ProMan)
-				//ProMan.setDead();
+				Man.setDead(this.gameObject);
 			Debug.Log ("HIT BASE");
 			//FOR GEORGE: CALL PIXELEFFECT DO NOT CHILD CALL
 			Destroy (col.gameObject);
@@ -60,7 +59,8 @@ public class Projectile : MonoBehaviour
 			if(PP == false)
 			{
 				Debug.Log("PLAYER HIT");
-				//loose life or loose game
+				Destroy (col.gameObject);
+				Destroy(this.gameObject);
 			}
 		}
 	}
