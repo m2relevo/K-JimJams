@@ -70,13 +70,26 @@ public class Projectile : MonoBehaviour
 	void Update ()
 	{
 	
-		Vector2 position = transform.position;
+		if (PP == true) 
+		{
 
-		position = new Vector2(position.x,position.y+speed*Time.deltaTime);
-		transform.position = position;
+			Debug.Log ("I am player Bullet");
+			Vector2 position = transform.position;
 
+			position = new Vector2 (position.x, position.y + speed * Time.deltaTime);
+			transform.position = position;
+		}
+		if (PP == false) 
+		{
+			Debug.Log ("I am enemy bullet");
+			Vector2 Eposition = transform.position;
+
+			Eposition = new Vector2 (Eposition.x, Eposition.y - speed * Time.deltaTime);
+			transform.position = Eposition;
+
+		}
 		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
-		Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (-1, -1));
+		Vector2 min = Camera.main.ViewportToWorldPoint (new Vector2 (0, 0));
 
 		//Debug.Log ("Shots fired!");
 
@@ -90,11 +103,12 @@ public class Projectile : MonoBehaviour
 			Debug.Log ("Bullet Despawned");
 		
 		}
-		//if (transform.position.y > min.y)
-		//{
-		//	Destroy (gameObject);
-		//	Debug.Log ("Bullet Despawned");
-		//}
+		if (transform.position.y < min.y)
+		{
+			Man.setDead (this.gameObject);
+			Destroy (this.gameObject);
+			Debug.Log ("Bullet Despawned");
+		}
 	}
 
 

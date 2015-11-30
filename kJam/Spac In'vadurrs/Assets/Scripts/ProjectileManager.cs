@@ -54,9 +54,21 @@ public class ProjectileManager : MonoBehaviour {
 		//able to spawn a missile
 		if (noFire == false) 
 		{
+			int i = 0;
 			Debug.Log("Making new bullet");
 			//pick enemy to shoot from
 			int R = (Random.Range(0, (enemies.Length - 1)));
+			while( i == 0)
+			{
+				if(enemies[R] != null)
+				{
+					i++;
+				}
+				else
+				{
+					R = (Random.Range (0, (enemies.Length - 1)));
+				}
+			}
 			int resupply = projCheck ();
 			if(resupply < maxNumProjectiles)
 			{
