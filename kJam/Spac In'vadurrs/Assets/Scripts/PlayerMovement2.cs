@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement2 : MonoBehaviour
 {
 	public float speed;
 	public GameObject Bullet;
@@ -18,8 +18,8 @@ public class PlayerMovement : MonoBehaviour
 	void Update ()
 	{	
 
-		float x = Input.GetAxisRaw ("Horizontal_1");
-		float y = Input.GetAxisRaw ("Vertical_1");
+		float x = Input.GetAxisRaw ("Horizontal_2");
+		float y = Input.GetAxisRaw ("Vertical_2");
 		Vector2 direction = new Vector2 (x, y).normalized;
 
 		Move (direction);
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 	void Move (Vector2 direction)
 	{
 
-		if (Input.GetKeyDown ("joystick 1 button 4")) //&& limit == false
+		if (Input.GetKeyDown ("joystick 1 button 5")) //&& limit == false
 		{
 			if(limit==false)
 			    {
