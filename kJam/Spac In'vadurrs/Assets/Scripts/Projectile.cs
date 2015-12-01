@@ -69,15 +69,14 @@ public class Projectile : MonoBehaviour
 				PM3.bulletDead ();
 			if(this.gameObject.name == "4")
 				PM4.bulletDead ();
-			col.GetComponent<ProjectileManager>().setDead(this.gameObject);
-			if (PP == true) 
-			{
-			PM.bulletDead ();
+
+			if(PP = false)
+			Man.setDead(this.gameObject);
+
 			//col.GetComponent<ProjectileManager>().setDead(this.gameObject);
 			Debug.Log ("HIT BASE");
 			col.GetComponent<baseSprite>().ChangeSprite();
 			Destroy (this.gameObject);
-			}
 		}
 		if (col.gameObject.tag == "Player") 
 		{
@@ -108,9 +107,16 @@ public class Projectile : MonoBehaviour
 		{
 			Debug.Log ("I am enemy bullet");
 			Vector2 Eposition = transform.position;
-
+			if(Eposition.y < 0.5)
+			{
 			Eposition = new Vector2 (Eposition.x, Eposition.y - speed * Time.deltaTime);
 			transform.position = Eposition;
+			}
+			else
+			{
+				Eposition = new Vector2 (Eposition.x, Eposition.y + speed * Time.deltaTime);
+				transform.position = Eposition;
+			}
 
 		}
 		Vector2 max = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));

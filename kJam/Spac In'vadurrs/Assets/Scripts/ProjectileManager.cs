@@ -21,6 +21,7 @@ public class ProjectileManager : MonoBehaviour {
 	{
 
 		enemies = GameObject.FindGameObjectsWithTag("enemy");
+
 		if(enemies.Length > 0)
 		{
 		//array of projectiles initialized
