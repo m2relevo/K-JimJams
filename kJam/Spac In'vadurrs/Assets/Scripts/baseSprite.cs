@@ -25,7 +25,7 @@ public class baseSprite : MonoBehaviour {
 		} else if (spriteRenderer.sprite == sprite3) {
 			spriteRenderer.sprite = sprite4;
 		} else {
-			Destroy(this.gameObject);
+			Destroy(transform.parent.gameObject);
 		}
 	}
 }

@@ -56,8 +56,6 @@ public class PlayerMovement : MonoBehaviour
 		transform.position = pos;
 	}
 
-
-
 	public void bulletDead()
 	{
 		limit = false;

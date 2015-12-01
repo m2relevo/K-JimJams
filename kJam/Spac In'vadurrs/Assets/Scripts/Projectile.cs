@@ -14,9 +14,8 @@ public class Projectile : MonoBehaviour
 	void Start ()
 	{	
 		speed = 2f;
-		PM = GameObject.Find ("Player").GetComponent<PlayerMovement> ();
+		PM = GameObject.Find ("Player").GetComponent<PlayerMovement>();
 		Man = GameObject.Find("Manager").GetComponent<ProjectileManager>();
-		//BS = GameObject.FindGameObjectWithTag("PixelEffect").GetComponent<baseSprite> ();
 	}
 	// Is a player projectile
 	public void SetPPT()
@@ -31,8 +30,6 @@ public class Projectile : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-
-
 		if (col.gameObject.tag == "enemy") 
 		{
 		   if(PP == true)
@@ -43,16 +40,13 @@ public class Projectile : MonoBehaviour
 			 Destroy(this.gameObject);
 			}
 		}
-		if (col.gameObject.tag == "home_base") 
+		if (col.gameObject.tag == "PixelEffect") 
 		{
-			if(PM!=null)
 				PM.bulletDead ();
-				Man.setDead(this.gameObject);
+			col.GetComponent<ProjectileManager>().setDead(this.gameObject);
 			Debug.Log ("HIT BASE");
-			//FOR GEORGE: CALL PIXELEFFECT DO NOT CHILD CALL
-			Destroy (col.gameObject);
+			col.GetComponent<baseSprite>().ChangeSprite();
 			Destroy (this.gameObject);
-		
 		}
 		if (col.gameObject.tag == "Player") 
 		{
