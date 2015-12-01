@@ -14,6 +14,7 @@ public class ProjectileManager : MonoBehaviour {
 	public GameObject missile;
 	GameObject[] enemies;
 	bool noFire = false;
+	int Ran;
 
 
 	// Use this for initialization
@@ -71,6 +72,7 @@ public class ProjectileManager : MonoBehaviour {
 				int resupply = projCheck ();
 				if (resupply < maxNumProjectiles) {
 					newMissile (resupply);  
+					setView(R);
 					Projectiles [resupply].shot.transform.position = enemies [R].transform.position;
 				}
 			}
@@ -106,6 +108,21 @@ public class ProjectileManager : MonoBehaviour {
 			 Debug.Log ("Ure Dead m9");
 			 Projectiles [w].alive = false;
 			}
+		}
+	}
+	void setView( int selection)
+	{
+		Ran = selection;
+	}
+	public bool checkView()
+	{
+		if (enemies [Ran].transform.parent.transform.position.y > -2) 
+		{
+			return true;
+		}
+		else 
+		{
+			return false;
 		}
 	}
 }

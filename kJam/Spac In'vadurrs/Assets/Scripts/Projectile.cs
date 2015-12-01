@@ -10,6 +10,8 @@ public class Projectile : MonoBehaviour
 	public ProjectileManager Man;
 	public PlayerManager PMan;
 	int ProVal;
+	Vector3 startPos;
+	bool UporDown;
 
 	// Use this for initialization
 	void Start ()
@@ -19,6 +21,7 @@ public class Projectile : MonoBehaviour
 		PMan = GameObject.Find("Manager").GetComponent<PlayerManager>();
 		bool[] pCheck = new bool[PMan.maxPCount];
 		pCheck = PMan.playerCheck ();
+		UporDown = Man.checkView();
 		if(pCheck[0] == true)
 		PM = GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>();
 		if(pCheck[1] == true)
@@ -70,8 +73,10 @@ public class Projectile : MonoBehaviour
 			if(this.gameObject.name == "4")
 				PM4.bulletDead ();
 
-			if(PP = false)
-			Man.setDead(this.gameObject);
+			if(PP == false)
+			{
+			 Man.setDead(this.gameObject);
+			}
 
 			//col.GetComponent<ProjectileManager>().setDead(this.gameObject);
 			Debug.Log ("HIT BASE");
@@ -107,15 +112,17 @@ public class Projectile : MonoBehaviour
 		{
 			Debug.Log ("I am enemy bullet");
 			Vector2 Eposition = transform.position;
-			if(Eposition.y < 0.5)
+
+
+			if(UporDown == false)
 			{
 			Eposition = new Vector2 (Eposition.x, Eposition.y - speed * Time.deltaTime);
-			transform.position = Eposition;
+			this.transform.position = Eposition;
 			}
 			else
 			{
-				Eposition = new Vector2 (Eposition.x, Eposition.y + speed * Time.deltaTime);
-				transform.position = Eposition;
+			 Eposition = new Vector2 (Eposition.x, Eposition.y + speed * Time.deltaTime);
+			 this.transform.position = Eposition;
 			}
 
 		}
@@ -141,7 +148,7 @@ public class Projectile : MonoBehaviour
 				PM3.bulletDead ();
 			if(this.gameObject.name == "4")
 				PM4.bulletDead ();
-			Destroy (gameObject);
+			Destroy (this.gameObject);
 			Debug.Log ("Bullet Despawned");
 		
 		}
