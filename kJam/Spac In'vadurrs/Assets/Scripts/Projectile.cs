@@ -5,17 +5,28 @@ public class Projectile : MonoBehaviour
 {
 	float speed;
 	bool PP = true; // Player projectile too check if shot by enemy or player
-	public PlayerMovement PM;
+	public PlayerMovement PM, PM2, PM3, PM4;
 	public baseSprite BS;
 	public ProjectileManager Man;
+	public PlayerManager PMan;
 	int ProVal;
 
 	// Use this for initialization
 	void Start ()
 	{	
 		speed = 2f;
-		PM = GameObject.Find ("Player").GetComponent<PlayerMovement>();
 		Man = GameObject.Find("Manager").GetComponent<ProjectileManager>();
+		PMan = GameObject.Find("Manager").GetComponent<PlayerManager>();
+		bool[] pCheck = new bool[PMan.maxPCount];
+		pCheck = PMan.playerCheck ();
+		if(pCheck[0] == true)
+		PM = GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>();
+		if(pCheck[1] == true)
+		PM2 = GameObject.Find("Player 2(Clone)").GetComponent<PlayerMovement>();
+		if(pCheck[2] == true)
+		PM3 = GameObject.Find("Player 3(Clone)").GetComponent<PlayerMovement>();
+		if(pCheck[3] == true)
+		PM4 = GameObject.Find("Player 4(Clone)").GetComponent<PlayerMovement>();
 	}
 	// Is a player projectile
 	public void SetPPT()
@@ -34,7 +45,15 @@ public class Projectile : MonoBehaviour
 		{
 		   if(PP == true)
 			{
-			 PM.bulletDead ();
+			 if(this.gameObject.name == "1")
+			     PM.bulletDead ();
+			 if(this.gameObject.name == "2")
+				 PM2.bulletDead ();
+			 if(this.gameObject.name == "3")
+				 PM3.bulletDead ();
+			 if(this.gameObject.name == "4")
+				 PM4.bulletDead ();
+
 			 Debug.Log("ENEMY HIT");
 			 Destroy(col.gameObject);
 			 Destroy(this.gameObject);
@@ -42,10 +61,22 @@ public class Projectile : MonoBehaviour
 		}
 		if (col.gameObject.tag == "PixelEffect") 
 		{
+<<<<<<< HEAD
+			if(this.gameObject.name == "1")
+				PM.bulletDead ();
+			if(this.gameObject.name == "2")
+				PM2.bulletDead ();
+			if(this.gameObject.name == "3")
+				PM3.bulletDead ();
+			if(this.gameObject.name == "4")
+				PM4.bulletDead ();
+			col.GetComponent<ProjectileManager>().setDead(this.gameObject);
+=======
 			if (PP == true) 
 			{
 			PM.bulletDead ();
 			//col.GetComponent<ProjectileManager>().setDead(this.gameObject);
+>>>>>>> origin/master
 			Debug.Log ("HIT BASE");
 			col.GetComponent<baseSprite>().ChangeSprite();
 			Destroy (this.gameObject);
@@ -99,7 +130,14 @@ public class Projectile : MonoBehaviour
 			Man.setDead(this.gameObject);
 			}
 			else
+			if(this.gameObject.name == "1")
 				PM.bulletDead ();
+			if(this.gameObject.name == "2")
+				PM2.bulletDead ();
+			if(this.gameObject.name == "3")
+				PM3.bulletDead ();
+			if(this.gameObject.name == "4")
+				PM4.bulletDead ();
 			Destroy (gameObject);
 			Debug.Log ("Bullet Despawned");
 		
@@ -110,7 +148,14 @@ public class Projectile : MonoBehaviour
 			{
 			 Man.setDead (this.gameObject);
 			}
-			PM.bulletDead ();
+			if(this.gameObject.name == "1")
+				PM.bulletDead ();
+			if(this.gameObject.name == "2")
+				PM2.bulletDead ();
+			if(this.gameObject.name == "3")
+				PM3.bulletDead ();
+			if(this.gameObject.name == "4")
+				PM4.bulletDead ();
 			Destroy (this.gameObject);
 			Debug.Log ("Bullet Despawned");
 		}

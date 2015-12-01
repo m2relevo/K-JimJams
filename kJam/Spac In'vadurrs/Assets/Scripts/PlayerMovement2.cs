@@ -34,6 +34,7 @@ public class PlayerMovement2 : MonoBehaviour
 			    {
 			        limit=true;
 			        GameObject Projectile = (GameObject)Instantiate (Bullet);
+				    Projectile.name = "2";
 			        Projectile.GetComponent<Projectile>().SetPPT ();
 			        Projectile.transform.position = Projectileposition.transform.position;
 			    }
