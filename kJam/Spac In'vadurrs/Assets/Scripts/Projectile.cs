@@ -89,17 +89,29 @@ public class Projectile : MonoBehaviour
 
 		if (transform.position.y > max.y)
 		{
-			//if(PM != null)
+			 if(PP == false)
+			{
 				PM.bulletDead ();
+			}
 			//if(ProMan!=null)
+			if(PP == true)
+			{
 			Man.setDead(this.gameObject);
+			}
 			Destroy (gameObject);
 			Debug.Log ("Bullet Despawned");
 		
 		}
 		if (transform.position.y < min.y)
 		{
-			Man.setDead (this.gameObject);
+			if(PP == false)
+			{
+			  Man.setDead (this.gameObject);
+			}
+			if(PP == true)
+			{
+				PM.bulletDead ();
+			}
 			Destroy (this.gameObject);
 			Debug.Log ("Bullet Despawned");
 		}
