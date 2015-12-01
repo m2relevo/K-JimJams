@@ -42,11 +42,14 @@ public class Projectile : MonoBehaviour
 		}
 		if (col.gameObject.tag == "PixelEffect") 
 		{
-				PM.bulletDead ();
-			col.GetComponent<ProjectileManager>().setDead(this.gameObject);
+			if (PP == true) 
+			{
+			PM.bulletDead ();
+			//col.GetComponent<ProjectileManager>().setDead(this.gameObject);
 			Debug.Log ("HIT BASE");
 			col.GetComponent<baseSprite>().ChangeSprite();
 			Destroy (this.gameObject);
+			}
 		}
 		if (col.gameObject.tag == "Player") 
 		{
