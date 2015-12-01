@@ -19,9 +19,13 @@ public class ProjectileManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+
+		enemies = GameObject.FindGameObjectsWithTag("enemy");
+		if(enemies.Length > 0)
+		{
 		//array of projectiles initialized
 		Projectiles = new ProjectileStruct[maxNumProjectiles];
-		enemies = GameObject.FindGameObjectsWithTag("enemy");
+
 		for(int i = 0; i<maxNumProjectiles; i++) 
 		{
 			//preload the missiles 
@@ -31,61 +35,44 @@ public class ProjectileManager : MonoBehaviour {
 			Projectiles[i].alive = true;
 
 		}
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		//Just so i dont have to type it all out each time
-		if (Projectiles[0].alive == true && Projectiles [1].alive == true && Projectiles [2].alive == true) 
-		{
-			noFire = true;
-		} 
-		else 
-		{
-			noFire = false;
-		}
+		if (enemies.Length > 0) {
+			//Just so i dont have to type it all out each time
+			if (Projectiles [0].alive == true && Projectiles [1].alive == true && Projectiles [2].alive == true) {
+				noFire = true;
+			} else {
+				noFire = false;
+			}
 	   
-		//all missiles in use
-		if (noFire == true) 
-		{
-			//add later 
-			Debug.Log("Still shooting");
-		}
-		//able to spawn a missile
-		if (noFire == false) 
-		{
-			int i = 0;
-			Debug.Log("Making new bullet");
-			//pick enemy to shoot from
-			int R = (Random.Range(0, (enemies.Length - 1)));
-			while( i == 0)
-			{
-				if(enemies[R] != null)
-				{
-					i++;
+			//all missiles in use
+			if (noFire == true) {
+				//add later 
+				Debug.Log ("Still shooting");
+			}
+			//able to spawn a missile
+			if (noFire == false) {
+				int i = 0;
+				Debug.Log ("Making new bullet");
+				//pick enemy to shoot from
+				int R = (Random.Range (0, (enemies.Length - 1)));
+				while (i == 0) {
+					if (enemies [R] != null) {
+						i++;
+					} else {
+						R = (Random.Range (0, (enemies.Length - 1)));
+					}
 				}
-				else
-				{
-					R = (Random.Range (0, (enemies.Length - 1)));
+				int resupply = projCheck ();
+				if (resupply < maxNumProjectiles) {
+					newMissile (resupply);  
+					Projectiles [resupply].shot.transform.position = enemies [R].transform.position;
 				}
 			}
-			int resupply = projCheck ();
-			if(resupply < maxNumProjectiles)
-			{
-			 newMissile(resupply);  
-			 Projectiles[resupply].shot.transform.position = enemies[R].transform.position;
-			}
-
-
-		 
-		   //Projectile.transform.position = Projectileposition.transform.position;
-
-		   //find what projectile isnt active
-
-		   // Set Projectile location change projectile type
-
-		   //shoot projectile from enemy
 		}
 	}
 	// Check which projectile is dead

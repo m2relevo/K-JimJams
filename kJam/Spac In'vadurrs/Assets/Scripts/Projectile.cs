@@ -89,15 +89,14 @@ public class Projectile : MonoBehaviour
 
 		if (transform.position.y > max.y)
 		{
-			 if(PP == false)
-			{
-				PM.bulletDead ();
-			}
+
 			//if(ProMan!=null)
-			if(PP == true)
+			if(PP == false)
 			{
 			Man.setDead(this.gameObject);
 			}
+			else
+				PM.bulletDead ();
 			Destroy (gameObject);
 			Debug.Log ("Bullet Despawned");
 		
@@ -106,12 +105,9 @@ public class Projectile : MonoBehaviour
 		{
 			if(PP == false)
 			{
-			  Man.setDead (this.gameObject);
+			 Man.setDead (this.gameObject);
 			}
-			if(PP == true)
-			{
-				PM.bulletDead ();
-			}
+			PM.bulletDead ();
 			Destroy (this.gameObject);
 			Debug.Log ("Bullet Despawned");
 		}
