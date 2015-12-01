@@ -5,7 +5,10 @@ public class Projectile : MonoBehaviour
 {
 	float speed;
 	bool PP = true; // Player projectile too check if shot by enemy or player
-	public PlayerMovement PM, PM2, PM3, PM4;
+	public PlayerMovement PM;
+	public PlayerMovement2 PM2;
+	public PlayerMovement3 PM3; 
+	public PlayerMovement4 PM4;
 	public baseSprite BS;
 	public ProjectileManager Man;
 	public PlayerManager PMan;
@@ -25,11 +28,11 @@ public class Projectile : MonoBehaviour
 		if(pCheck[0] == true)
 		PM = GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>();
 		if(pCheck[1] == true)
-		PM2 = GameObject.Find("Player 2(Clone)").GetComponent<PlayerMovement>();
+		PM2 = GameObject.Find("Player 2(Clone)").GetComponent<PlayerMovement2>();
 		if(pCheck[2] == true)
-		PM3 = GameObject.Find("Player 3(Clone)").GetComponent<PlayerMovement>();
+		PM3 = GameObject.Find("Player 3(Clone)").GetComponent<PlayerMovement3>();
 		if(pCheck[3] == true)
-		PM4 = GameObject.Find("Player 4(Clone)").GetComponent<PlayerMovement>();
+		PM4 = GameObject.Find("Player 4(Clone)").GetComponent<PlayerMovement4>();
 	}
 	// Is a player projectile
 	public void SetPPT()
@@ -104,8 +107,14 @@ public class Projectile : MonoBehaviour
 
 			Debug.Log ("I am player Bullet");
 			Vector2 position = transform.position;
-
+			if(this.name =="1" || this.name == "3")
+			{
 			position = new Vector2 (position.x, position.y + speed * Time.deltaTime);
+			}
+			else
+			{
+				position = new Vector2 (position.x, position.y - speed * Time.deltaTime);
+			}
 			transform.position = position;
 		}
 		if (PP == false) 
