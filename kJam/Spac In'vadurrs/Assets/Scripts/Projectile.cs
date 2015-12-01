@@ -61,7 +61,6 @@ public class Projectile : MonoBehaviour
 		}
 		if (col.gameObject.tag == "PixelEffect") 
 		{
-<<<<<<< HEAD
 			if(this.gameObject.name == "1")
 				PM.bulletDead ();
 			if(this.gameObject.name == "2")
@@ -71,12 +70,10 @@ public class Projectile : MonoBehaviour
 			if(this.gameObject.name == "4")
 				PM4.bulletDead ();
 			col.GetComponent<ProjectileManager>().setDead(this.gameObject);
-=======
 			if (PP == true) 
 			{
 			PM.bulletDead ();
 			//col.GetComponent<ProjectileManager>().setDead(this.gameObject);
->>>>>>> origin/master
 			Debug.Log ("HIT BASE");
 			col.GetComponent<baseSprite>().ChangeSprite();
 			Destroy (this.gameObject);
