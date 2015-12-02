@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour {
 	bool[] alive;
 	public GameObject player1, player2, player3, player4;
 	public bool Test;
-	public Text[] text;
+	public GameObject[] text;
 	public GameObject[] life;
 	bool check;
 	Vector2[] PSpawn;
@@ -22,6 +22,7 @@ public class PlayerManager : MonoBehaviour {
 
 	void SetPlayNo()
 	{
+		text = GameObject.FindGameObjectsWithTag("Text");
 		if (firstcall == true) {
 			//would loop if more players
 			pCount [0] = false;
@@ -35,11 +36,11 @@ public class PlayerManager : MonoBehaviour {
 			pCount[0] = !pCount[0];
 			if(pCount[0] == false)
 			{
-				text[0].text = " Press Left Bumper";
+				text[1].GetComponent<Text>().text = " Press Left Bumper";
 			}
 			if(pCount[0] == true)
 			{
-				text[0].text = " Ready ";
+				text[1].GetComponent<Text>().text  = " Ready ";
 			}
 			
 		}
@@ -48,11 +49,11 @@ public class PlayerManager : MonoBehaviour {
 			pCount[1] = !pCount[1];
 			if(pCount[1] == false)
 			{
-				text[1].text = " Press Right Bumper";
+				text[3].GetComponent<Text>().text  = " Press Right Bumper";
 			}
 			if(pCount[1] == true)
 			{
-				text[1].text = " Ready ";
+				text[3].GetComponent<Text>().text  = " Ready ";
 			}
 		}
 		if (Input.GetKeyDown ("joystick 2 button 4")) 
@@ -60,11 +61,11 @@ public class PlayerManager : MonoBehaviour {
 			pCount[2] = !pCount[2];
 			if(pCount[2] == false)
 			{
-				text[2].text = " Press Left Bumper";
+				text[0].GetComponent<Text>().text  = " Press Left Bumper";
 			}
 			if(pCount[2] == true)
 			{
-				text[2].text = " Ready ";
+				text[0].GetComponent<Text>().text  = " Ready ";
 			}
 			
 		}
@@ -73,19 +74,19 @@ public class PlayerManager : MonoBehaviour {
 			pCount[3] = !pCount[3];
 			if(pCount[3] == false)
 			{
-				text[3].text = " Press Right Bumper";
+				text[2].GetComponent<Text>().text  = " Press Right Bumper";
 			}
 			if(pCount[3] == true)
 			{
-				text[3].text = " Ready ";
+				text[2].GetComponent<Text>().text  = " Ready ";
 			}
 			
 		}
 	}
 
-	void Awake () {
+	void Awake () 
+	{
 		DontDestroyOnLoad (transform.gameObject);
-
 	}
 	
 
@@ -203,7 +204,7 @@ public class PlayerManager : MonoBehaviour {
 		{
 			lifes[3]++;
 		}
-		if(lifes[0] == 3 && lifes[1] == 3 && lifes[2] == 3 && lifes[3] == 3)
+		if(lifes[0] >= 3 && lifes[1] >= 3 && lifes[2] >= 3 && lifes[3] >= 3)
 		{
 			Application.LoadLevel ("Menu");
 		}
@@ -215,7 +216,6 @@ public class PlayerManager : MonoBehaviour {
 	{
 
 		bool[] pStats = new bool[maxPCount+1];
-		//first cell in array returns no of players rest act as booleans to say whether playing
 		for (int j = 0; j<maxPCount; j++) 
 		{
 			pStats[j] =false;
@@ -229,5 +229,9 @@ public class PlayerManager : MonoBehaviour {
 		}
 
 		return pStats;
+	}
+	public int[] lifeCheck()
+	{
+		return lifes;
 	}
 }

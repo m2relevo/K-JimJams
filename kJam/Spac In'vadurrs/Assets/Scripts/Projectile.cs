@@ -12,25 +12,28 @@ public class Projectile : MonoBehaviour
 	public ProjectileManager Man;
 	public PlayerManager PMan;
 	int ProVal;
+	int[] Lifes;
 	Vector3 startPos;
 	bool UporDown;
 
 	// Use this for initialization
 	void Start ()
 	{	
+		Lifes = new int[5];
 		speed = 2f;
 		Man = GameObject.Find("Manager").GetComponent<ProjectileManager>();
 		PMan = GameObject.Find("Manager").GetComponent<PlayerManager>();
+		Lifes = PMan.lifeCheck();
 		bool[] pCheck = new bool[PMan.maxPCount];
 		pCheck = PMan.playerCheck ();
 		UporDown = Man.checkView();
-		if(pCheck[0] == true)
+		if(pCheck[0] == true && Lifes[0] < 3)
 		PM = GameObject.Find("P1").GetComponent<PlayerMovement>();
-		if(pCheck[1] == true)
+		if(pCheck[1] == true && Lifes[1] < 3)
 		PM2 = GameObject.Find("P2").GetComponent<PlayerMovement2>();
-		if(pCheck[2] == true)
+		if(pCheck[2] == true && Lifes[2] < 3)
 		PM3 = GameObject.Find("P3").GetComponent<PlayerMovement3>();
-		if(pCheck[3] == true)
+		if(pCheck[3] == true && Lifes[3] < 3)
 		PM4 = GameObject.Find("P4").GetComponent<PlayerMovement4>();
 	}
 	// Is a player projectile

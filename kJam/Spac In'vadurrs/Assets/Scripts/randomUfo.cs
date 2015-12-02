@@ -12,7 +12,7 @@ public class randomUfo : MonoBehaviour {
 	public Vector2 position;
 
 	bool timerDone = false;
-	float t= Time.time;
+	float t;
 	float ellapsed;
 	int randomTime; 
 	public ufoSprite UFOSp;
