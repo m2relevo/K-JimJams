@@ -123,6 +123,27 @@ public class Projectile : MonoBehaviour
 				Destroy(this.gameObject);
 			}
 		}
+
+	/*	if (col.gameObject.tag == "Player") 
+		{
+			if(PP == true)
+			{
+				Debug.Log("PLAYER HIT");
+				string objName = col.gameObject.name;
+				if(col.gameObject.name == "P1")
+					col.gameObject.GetComponent<PlayerMovement>().enabled = !col.gameObject.GetComponent<PlayerMovement>().enabled ;
+				if(col.gameObject.name == "P2")
+					col.gameObject.GetComponent<PlayerMovement2>().enabled = !col.gameObject.GetComponent<PlayerMovement2>().enabled ;
+				if(col.gameObject.name == "P3")
+					col.gameObject.GetComponent<PlayerMovement3>().enabled = !col.gameObject.GetComponent<PlayerMovement3>().enabled;
+				if(col.gameObject.name == "P4")
+					col.gameObject.GetComponent<PlayerMovement4>().enabled = !col.gameObject.GetComponent<PlayerMovement4>().enabled;
+				col.gameObject.SetActive(false);
+				PMan.playerDead(objName);
+				Man.setDead (this.gameObject);
+				Destroy(this.gameObject);
+			}
+		}*/
 	}
 
 
