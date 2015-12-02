@@ -9,7 +9,6 @@ public class Projectile : MonoBehaviour
 	public PlayerMovement2 PM2;
 	public PlayerMovement3 PM3; 
 	public PlayerMovement4 PM4;
-	public baseSprite BS;
 	public ProjectileManager Man;
 	public PlayerManager PMan;
 	int ProVal;
@@ -77,7 +76,7 @@ public class Projectile : MonoBehaviour
 			if(this.gameObject.name == "4")
 				PM4.bulletDead ();
 
-			col.GetComponent<ufoSprite>().ChangeSprite();
+			col.GetComponent<ufoSprite>().ChangeSprite(true);
 
 			Destroy (this.gameObject);
 			Debug.Log("UFO goin Down Son.");

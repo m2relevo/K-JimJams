@@ -5,7 +5,7 @@ public class randomUfo : MonoBehaviour {
 
 	Vector2 maxCam;
 	Vector2 minCam;
-	float speed = 2f;
+	float speed = 1f;
 
 	public GameObject leftBox;
 	public GameObject rightBox;
@@ -15,6 +15,7 @@ public class randomUfo : MonoBehaviour {
 	float t= Time.time;
 	float ellapsed;
 	int randomTime; 
+	public ufoSprite UFOSp;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,7 @@ public class randomUfo : MonoBehaviour {
 		maxCam = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
 		minCam = Camera.main.ViewportToWorldPoint (new Vector2 (0, 0));
 		timerDone = false;
+		UFOSp = GameObject.Find("UFO").GetComponent<ufoSprite>();
 		setStuff ();
 	}
 	
@@ -41,7 +43,8 @@ public class randomUfo : MonoBehaviour {
 		leftBox.transform.position = new Vector3(minCam.x -2, gameObject.transform.position.y, 1);
 		rightBox.transform.position = new Vector3(maxCam.x +2, gameObject.transform.position.y, 1);
 		position = new Vector2 (minCam.x -1, gameObject.transform.position.y);
-		timerDone = false;
+		transform.position = position;
+		randomTime = Random.Range(10,15);
 	}
 
 	void moveUfo()
@@ -56,16 +59,16 @@ public class randomUfo : MonoBehaviour {
 	{
 		if (col.gameObject.tag == "rightBox") 
 		{	
-			//col.GetComponent<ufoSprite>().ChangeSprite();
 			timerDone = false;
+			//col.GetComponent<ufoSprite>().spriteRenderer.sprite = col.GetComponent<ufoSprite>().sprite1;		
 			randomTime = Random.Range(10,15);
 			t = Time.time;
 			speed = -1f;
 		}
 		if (col.gameObject.tag == "leftBox") 
 		{
-			//col.GetComponent<ufoSprite>().ChangeSprite();
 			timerDone = false;
+			//col.GetComponent<ufoSprite>().spriteRenderer.sprite = col.GetComponent<ufoSprite>().sprite1;
 			randomTime = Random.Range(10,15); 
 			t = Time.time;
 			speed = 1f;

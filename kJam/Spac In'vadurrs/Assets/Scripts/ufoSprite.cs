@@ -6,7 +6,7 @@ public class ufoSprite : MonoBehaviour {
 	public Sprite sprite1;
 	public Sprite sprite2; 	 
 	
-	private SpriteRenderer spriteRenderer; 
+	public SpriteRenderer spriteRenderer; 
 	
 	void Start ()
 	{
@@ -14,12 +14,13 @@ public class ufoSprite : MonoBehaviour {
 		spriteRenderer.sprite = sprite1; 
 	}
 	
-	public void ChangeSprite()
+	public void ChangeSprite(bool hit)
 	{
-		if (spriteRenderer.sprite == sprite1) 
+		if (hit==true) 
 		{ 
 			spriteRenderer.sprite = sprite2;
-		} else if (spriteRenderer.sprite == sprite2) 
+		} 
+		if (hit==false) 
 		{
 			spriteRenderer.sprite = sprite1;
 		}
