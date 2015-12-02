@@ -65,6 +65,24 @@ public class Projectile : MonoBehaviour
 			 Destroy(this.gameObject);
 			}
 		}
+
+		if (col.gameObject.tag == "UFO") 
+		{
+			if(this.gameObject.name == "1")
+				PM.bulletDead ();
+			if(this.gameObject.name == "2")
+				PM2.bulletDead ();
+			if(this.gameObject.name == "3")
+				PM3.bulletDead ();
+			if(this.gameObject.name == "4")
+				PM4.bulletDead ();
+
+			col.GetComponent<ufoSprite>().ChangeSprite();
+
+			Destroy (this.gameObject);
+			Debug.Log("UFO goin Down Son.");
+		}
+
 		if (col.gameObject.tag == "PixelEffect") 
 		{
 			if(this.gameObject.name == "1")

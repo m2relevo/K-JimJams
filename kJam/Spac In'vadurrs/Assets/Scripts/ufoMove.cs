@@ -42,5 +42,4 @@ public class ufoMove : MonoBehaviour {
 			speed = 3f;
 		}
 	}
-
 }
