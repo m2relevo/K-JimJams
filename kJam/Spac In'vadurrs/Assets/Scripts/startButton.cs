@@ -11,9 +11,16 @@ public class startButton : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetKeyDown ("joystick 1 button 7")) 
-		{
-			Application.LoadLevel ("playerselection");
+		if (Application.loadedLevelName == "Menu") {
+			if (Input.GetKeyDown ("joystick 1 button 7")|| Input.GetKeyDown ("joystick 2 button 7")) {
+				Application.LoadLevel ("playerselection");
+			}
+		}
+
+		if (Application.loadedLevelName == "DaRealDemo") {
+			if (Input.GetKeyDown ("joystick 1 button 7")|| Input.GetKeyDown ("joystick 2 button 7")) {
+				Application.LoadLevel ("Menu");
+			}
 		}
 	}
 }

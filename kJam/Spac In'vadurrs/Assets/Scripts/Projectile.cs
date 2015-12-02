@@ -26,13 +26,13 @@ public class Projectile : MonoBehaviour
 		pCheck = PMan.playerCheck ();
 		UporDown = Man.checkView();
 		if(pCheck[0] == true)
-		PM = GameObject.Find("Player(Clone)").GetComponent<PlayerMovement>();
+		PM = GameObject.Find("P1").GetComponent<PlayerMovement>();
 		if(pCheck[1] == true)
-		PM2 = GameObject.Find("Player 2(Clone)").GetComponent<PlayerMovement2>();
+		PM2 = GameObject.Find("P2").GetComponent<PlayerMovement2>();
 		if(pCheck[2] == true)
-		PM3 = GameObject.Find("Player 3(Clone)").GetComponent<PlayerMovement3>();
+		PM3 = GameObject.Find("P3").GetComponent<PlayerMovement3>();
 		if(pCheck[3] == true)
-		PM4 = GameObject.Find("Player 4(Clone)").GetComponent<PlayerMovement4>();
+		PM4 = GameObject.Find("P4").GetComponent<PlayerMovement4>();
 	}
 	// Is a player projectile
 	public void SetPPT()
@@ -91,7 +91,18 @@ public class Projectile : MonoBehaviour
 			if(PP == false)
 			{
 				Debug.Log("PLAYER HIT");
-				Destroy (col.gameObject);
+				string objName = col.gameObject.name;
+			    if(col.gameObject.name == "P1")
+					col.gameObject.GetComponent<PlayerMovement>().enabled = !col.gameObject.GetComponent<PlayerMovement>().enabled ;
+				if(col.gameObject.name == "P2")
+					col.gameObject.GetComponent<PlayerMovement2>().enabled = !col.gameObject.GetComponent<PlayerMovement2>().enabled ;
+				if(col.gameObject.name == "P3")
+					col.gameObject.GetComponent<PlayerMovement3>().enabled = !col.gameObject.GetComponent<PlayerMovement3>().enabled;
+				if(col.gameObject.name == "P4")
+					col.gameObject.GetComponent<PlayerMovement4>().enabled = !col.gameObject.GetComponent<PlayerMovement4>().enabled;
+				col.gameObject.SetActive(false);
+				PMan.playerDead(objName);
+				Man.setDead (this.gameObject);
 				Destroy(this.gameObject);
 			}
 		}

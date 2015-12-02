@@ -70,6 +70,7 @@ public class ProjectileManager : MonoBehaviour {
 						R = (Random.Range (0, (enemies.Length - 1)));
 					}
 				}
+				i = 0;
 				int resupply = projCheck ();
 				if (resupply < maxNumProjectiles) {
 					newMissile (resupply);  
@@ -117,13 +118,16 @@ public class ProjectileManager : MonoBehaviour {
 	}
 	public bool checkView()
 	{
-		if (enemies [Ran].transform.parent.transform.position.y > -2) 
+		if (enemies[Ran].transform.parent.transform.position.y > -2) 
 		{
+			Ran = 0;
 			return true;
 		}
 		else 
 		{
+			Ran = 0;
 			return false;
 		}
+
 	}
 }

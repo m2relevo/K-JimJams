@@ -91,7 +91,7 @@ public class InvaderMovement: MonoBehaviour {
 		Vector2 maxcamera = Camera.main.ViewportToWorldPoint (new Vector2 (1, 1));
 		if (transform.position.y <= mincamera.y)
 		{
-			Destroy (gameObject);
+			Application.LoadLevel ("Menu");
 		}
 	}
 
