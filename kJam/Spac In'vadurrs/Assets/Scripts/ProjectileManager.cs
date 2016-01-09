@@ -44,6 +44,7 @@ public class ProjectileManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		//enemies = GameObject.FindGameObjectsWithTag("enemy");
 		if (enemies.Length > 0) {
 			//Just so i dont have to type it all out each time
 			if (Projectiles [0].alive == true && Projectiles [1].alive == true && Projectiles [2].alive == true) {
@@ -60,6 +61,7 @@ public class ProjectileManager : MonoBehaviour {
 			//able to spawn a missile
 			if (noFire == false) {
 				int i = 0;
+				 
 				Debug.Log ("Making new bullet");
 				//pick enemy to shoot from
 				int R = (Random.Range (0, (enemies.Length - 1)));
