@@ -17,11 +17,13 @@ public class ufoSprite : MonoBehaviour {
 	public void ChangeSprite(bool hit)
 	{
 		if (hit==true) 
-		{ 
-			spriteRenderer.sprite = sprite2;
+		{
+            Debug.Log("BLACKKKKKKKKKKKKKKKKKK");
+            spriteRenderer.sprite = sprite2;
 		} 
 		if (hit==false) 
 		{
+            Debug.Log("GREEEEEEEEEEEEEEEEEEEEEN");
 			spriteRenderer.sprite = sprite1;
 		}
 	}

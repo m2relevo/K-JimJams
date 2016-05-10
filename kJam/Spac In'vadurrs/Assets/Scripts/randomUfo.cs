@@ -60,18 +60,18 @@ public class randomUfo : MonoBehaviour {
 		if (col.gameObject.tag == "rightBox") 
 		{	
 			timerDone = false;
-			//col.GetComponent<ufoSprite>().spriteRenderer.sprite = col.GetComponent<ufoSprite>().sprite1;		
 			randomTime = Random.Range(10,15);
 			t = Time.time;
 			speed = -1f;
-		}
+            UFOSp.ChangeSprite(false);
+        }
 		if (col.gameObject.tag == "leftBox") 
 		{
 			timerDone = false;
-			//col.GetComponent<ufoSprite>().spriteRenderer.sprite = col.GetComponent<ufoSprite>().sprite1;
 			randomTime = Random.Range(10,15); 
 			t = Time.time;
 			speed = 1f;
-		}
+            UFOSp.ChangeSprite(false);
+        }
 	}
 }
